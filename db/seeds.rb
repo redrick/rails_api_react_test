@@ -6,3 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+
+
+[["Stay Hungry. Stay Foolish.", "Steve Jobs"],
+["Good Artists Copy, Great Artists Steal.", "Pablo Picasso"],
+["Argue with idiots, and you become an idiot.", "Paul Graham"],
+["Be yourself; everyone else is already taken.", "Oscar Wilde"],
+["Simplicity is the ultimate sophistication.", "Leonardo Da Vinci"]].each do |quote|
+  Quote.create(content: quote.first, author: quote.last)
+end

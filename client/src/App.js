@@ -1,22 +1,44 @@
 import React, { Component } from 'react';
-import { Button  } from 'react-bootstrap';
+import { PageHeader } from 'react-bootstrap';
+import QuotesList from './QuotesList'
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
+  constructor () {
+    super()
+    this.state = {
+      quotes: []
+    }
+    this.getQuotes = this.getQuotes.bind(this)
+  }
+  componentDidMount () {
+    this.getQuotes()
+  }
+  fetch (endpoint) {
+    return new Promise((resolve, reject) => {
+      window.fetch(endpoint)
+      .then(response => response.json())
+      .then(json => resolve(json))
+      .catch(error => reject(error))
+    })
+  }
+  getQuotes () {
+    this.fetch('api/quotes.json')
+      .then(quotes => {
+        this.setState({quotes: quotes})
+      })
+  }
+  render () {
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <PageHeader>Somewhat famous quotes</PageHeader>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button bsStyle="danger">Danger!</Button>
+        <QuotesList quotes={this.state.quotes} />
       </div>
-    );
+    )
   }
 }
 
