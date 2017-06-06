@@ -34,7 +34,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <PageHeader>Somewhat famous quotes</PageHeader>
+          <PageHeader>Somewhat famous quotes here!</PageHeader>
         </div>
         <QuotesList quotes={this.state.quotes} />
       </div>
